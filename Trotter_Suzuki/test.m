@@ -1,4 +1,4 @@
-% Set the energy threshold for the low-energy subspace
+%% Set the energy threshold for the low-energy subspace
 delta = 5;
 
 energy = diag(energy);
@@ -34,11 +34,12 @@ for i = 1:length(dt)
     r_500_Delta_5(i) = norm(projector * Error_r_500{i});
 end
 
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_50.mat', 'r_50')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_100.mat', 'r_100')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_200.mat', 'r_200')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_500.mat', 'r_500')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_50_Delta_5.mat', 'r_50_Delta_5')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_100_Delta_5.mat', 'r_100_Delta_5')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_200_Delta_5.mat', 'r_200_Delta_5')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/r_500_Delta_5.mat', 'r_500_Delta_5')
+%% save
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_50.mat', 'r_50')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_100.mat', 'r_100')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_200.mat', 'r_200')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_500.mat', 'r_500')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_50_Delta_5.mat', 'r_50_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_100_Delta_5.mat', 'r_100_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_200_Delta_5.mat', 'r_200_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_500_Delta_5.mat', 'r_500_Delta_5')

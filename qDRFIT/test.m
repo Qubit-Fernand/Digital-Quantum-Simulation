@@ -1,16 +1,28 @@
-dt = [0.005 0.008 0.010 0.012 0.015 0.017 0.020];
+%% Initailize
+delta = 2;
+% energy = diag(energy);
 
-N_50 = zeros(1,length(dt));
-N_100 = zeros(1,length(dt));
-N_50_Delta_5 = zeros(1,length(dt));
-N_100_Delta_5 = zeros(1,length(dt));
-
-for i = 1:length(dt)
-    N_50(i) = norm(qDRIFT_shift_Error_N_50{i});
-    N_50_Delta_5(i) = norm(projector * qDRIFT_shift_Error_N_50{i});
+% Projector onto low-energy subspace
+projector = zeros(2^L);
+for j = 1:2^L
+    state = states(:,j);
+    if energy(j) < delta
+        projector = projector + state * state.';
+    end
 end
 
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/N_50.mat', 'N_50')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/N_50_Delta_5.mat', 'N_50_Delta_5')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/N_100.mat', 'N_100')
-save('/Users/AntiEntropy/Documents/Physics/Research/low-energy/Simulation/Figure/N_100_Delta_5.mat', 'N_100_Delta_5')
+N = [1000,10000,100000,200000,500000,1000000];
+
+t_10 = zeros(1, length(N));
+t_10_Delta_5 = zeros(1, length(N));
+
+%% Calculate Norm
+for i = 1:length(N)
+    t_10(i) = norm(qDRIFT_Error{i});
+    t_10_Delta_5(i) = norm(projector * qDRIFT_Error{i});
+end
+
+%% Save Data
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/t_10.mat', 't_10')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/t_10_Delta_5.mat', 't_10_Delta_5')
+

@@ -13,7 +13,7 @@ global H3_shift
 J = 1; % Exchange interaction energy
 
 % Define the size of the system (a 2 × L lattice with two L-length chains)
-L = 6;
+L = 3;
 
 % Construct the Hamiltonian matrix, H1: intra-chain interaction & H2: inter-chain interaction
 H1 = sparse(2^(2*L),2^(2*L)); % 2^L represents L spins, so the total number of states is 2^L
@@ -62,20 +62,5 @@ end
 % Shift the Hamiltonian by the ground state energy
 % Lanczos Method for sparse matrix. By default, the output is sorted in
 % descending order of norm
-energy1 = sort(eigs(H1, 4096)); 
-energy2 = sort(eigs(H2, 4096)); 
-energy3 = sort(eigs(H3, 4096));
-ground_energy1 = min(energy1);
-ground_energy2 = min(energy2);
-ground_energy3 = min(energy3);
-
-% Floor function removed
-H1_shift = H1 - ground_energy1 * speye(2^(2*L));
-H2_shift = H2 - ground_energy2 * speye(2^(2*L));
-H3_shift = H3 - ground_energy3 * speye(2^(2*L));
-
 % Derive the global Hamiltonian
 H = H1 + H2 + H3;
-H_shift = H1_shift+H2_shift+H3_shift;
-[states, energy] = eigs(H_shift, 4096);
-energy = diag(energy);
