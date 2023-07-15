@@ -2,6 +2,9 @@
 ## Matlab Calculating Data:
 *.mat
 
+## Auto Save
+*.asv
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
