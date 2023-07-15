@@ -1,16 +1,17 @@
 %% Initailize
-delta = 2;
+delta = 5;
 % energy = diag(energy);
 
 % Projector onto low-energy subspace
-projector = zeros(2^L);
-for j = 1:2^L
+projector = zeros(2^(2*L));
+for j = 1:2^(2*L)
     state = states(:,j);
     if energy(j) < delta
         projector = projector + state * state.';
     end
 end
 
+t_list = [1.0, 3.0, 5.0, 10.0];
 N = [1000,10000,100000,200000,500000,1000000];
 
 t_10 = zeros(1, length(N));
@@ -23,6 +24,6 @@ for i = 1:length(N)
 end
 
 %% Save Data
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/t_10.mat', 't_10')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/t_10_Delta_5.mat', 't_10_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/qDRIFT/t_10.mat', 't_10')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/qDRIFT/t_10_Delta_5.mat', 't_10_Delta_5')
 

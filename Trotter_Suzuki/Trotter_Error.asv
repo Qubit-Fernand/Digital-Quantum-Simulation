@@ -14,3 +14,4 @@ for i = 1:length(dt)
     Trotter_Error_200{i} = U^r(3) - expm(-1i * H_shift * dt(i) * 200);
     Trotter_Error_500{i} = U^r(4) - expm(-1i * H_shift * dt(i) * 500);
 end 
+

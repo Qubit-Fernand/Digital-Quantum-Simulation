@@ -1,5 +1,5 @@
 %% Set the energy threshold for the low-energy subspace
-delta = 5;
+delta = 10;
 
 energy = diag(energy);
 
@@ -24,22 +24,22 @@ r_200_Delta_5 = zeros(1,length(dt));
 r_500_Delta_5 = zeros(1,length(dt));
 
 for i = 1:length(dt)
-    r_50(i) = norm(Error_r_50{i});
-    r_100(i) = norm(Error_r_100{i});
-    r_200(i) = norm(Error_r_200{i});
-    r_500(i) = norm(Error_r_500{i});
-    r_50_Delta_5(i) = norm(projector * Error_r_50{i});
-    r_100_Delta_5(i) = norm(projector * Error_r_100{i});
-    r_200_Delta_5(i) = norm(projector * Error_r_200{i});
-    r_500_Delta_5(i) = norm(projector * Error_r_500{i});
+    r_50(i) = norm(Trotter_Error_50{i});
+    r_100(i) = norm(Trotter_Error_100{i});
+    r_200(i) = norm(Trotter_Error_200{i});
+    r_500(i) = norm(Trotter_Error_500{i});
+    r_50_Delta_5(i) = norm(projector * Trotter_Error_50{i});
+    r_100_Delta_5(i) = norm(projector * Trotter_Error_100{i});
+    r_200_Delta_5(i) = norm(projector * Trotter_Error_200{i});
+    r_500_Delta_5(i) = norm(projector * Trotter_Error_500{i});
 end
 
 %% save
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_50.mat', 'r_50')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_100.mat', 'r_100')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_200.mat', 'r_200')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_500.mat', 'r_500')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_50_Delta_5.mat', 'r_50_Delta_5')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_100_Delta_5.mat', 'r_100_Delta_5')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_200_Delta_5.mat', 'r_200_Delta_5')
-save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Figure/r_500_Delta_5.mat', 'r_500_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_50.mat', 'r_50')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_100.mat', 'r_100')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_200.mat', 'r_200')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_500.mat', 'r_500')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_50_Delta_5.mat', 'r_50_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_100_Delta_5.mat', 'r_100_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_200_Delta_5.mat', 'r_200_Delta_5')
+save('/Users/AntiEntropy/Documents/Research/Quantum-Simulation/Numerical/Trotter_Suzuki/r_500_Delta_5.mat', 'r_500_Delta_5')
