@@ -1,4 +1,4 @@
-% Set the energy threshold for the low-energy subspace
+%% Set the energy threshold for the low-energy subspace
 delta = 5;
 % energy = diag(energy);
 
@@ -11,6 +11,7 @@ for j = 1:2^(2*L)
     end
 end
 
+%% Act on a Random Generated State
 % Set seed to ensure the same initial state is outputted each time
 rng(0); % Set seed value to 0
 v = randn(2^(2*L), 1) + 1i * randn(2^(2*L), 1);
