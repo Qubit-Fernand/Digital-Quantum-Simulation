@@ -3,8 +3,8 @@ delta = 5;
 % energy = diag(energy);
 
 % Projector onto low-energy subspace
-projector = zeros(2^(2*L));
-for j = 1:2^(2*L)
+projector = zeros(2^N);
+for j = 1:2^N
     state = states(:,j);
     if energy(j) < delta
         projector = projector + state * state.';

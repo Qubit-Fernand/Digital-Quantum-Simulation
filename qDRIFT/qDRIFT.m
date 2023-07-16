@@ -1,5 +1,5 @@
 %% Calculate Norm of Each Local Hamiltonian
-global L;
+global N;
 global H;
 global H1;
 global H2;
@@ -15,21 +15,21 @@ B = eigs(H2_shift, 1);
 C = eigs(H3_shift, 1);
 
 t_list = [1.0, 3.0, 5.0, 10.0];
-N = [1000,10000,100000,200000,500000,1000000];
+num_list = [1000,10000,100000,200000,500000,1000000];
 
 sum = A + B + C;
 probabilities = [A/sum, B/sum, C/sum];
 
 %% qDRIFT: t = 1
 t = 1.0;
-qDRIFT_Error_1 = cell(1,length(N));
+qDRIFT_Error_1 = cell(1,length(num_list));
 
-for k = 1:length(N)
-    U_qDrift = speye(2^(2*L));
-    U_1 = expm(-1i*H1_shift*(t/N(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/N(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/N(k))*sum/C);
-    for j = 1:N(k)
+for k = 1:length(num_list)
+    U_qDrift = speye(2^N);
+    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
+    for j = 1:num_list(k)
         choice = rand();
         if choice < probabilities(1)
             selected_option = 1;
@@ -47,14 +47,14 @@ end
 
 %% qDRIFT: t = 3
 t = 3.0;
-qDRIFT_Error_3 = cell(1,length(N));
+qDRIFT_Error_3 = cell(1,length(num_list));
 
-for k = 1:length(N)
-    U_qDrift = speye(2^(2*L));
-    U_1 = expm(-1i*H1_shift*(t/N(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/N(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/N(k))*sum/C);
-    for j = 1:N(k)
+for k = 1:length(num_list)
+    U_qDrift = speye(2^N);
+    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
+    for j = 1:num_list(k)
         choice = rand();
         if choice < probabilities(1)
             selected_option = 1;
@@ -72,14 +72,14 @@ end
 
 %% qDRIFT: t = 5
 t = 5.0;
-qDRIFT_Error_5 = cell(1,length(N));
+qDRIFT_Error_5 = cell(1,length(num_list));
 
-for k = 1:length(N)
-    U_qDrift = speye(2^(2*L));
-    U_1 = expm(-1i*H1_shift*(t/N(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/N(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/N(k))*sum/C);
-    for j = 1:N(k)
+for k = 1:length(num_list)
+    U_qDrift = speye(2^N);
+    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
+    for j = 1:num_list(k)
         choice = rand();
         if choice < probabilities(1)
             selected_option = 1;
@@ -97,14 +97,14 @@ end
 
 %% qDRIFT: t = 10
 t = 10.0;
-qDRIFT_Error_10 = cell(1,length(N));
+qDRIFT_Error_10 = cell(1,length(num_list));
 
-for k = 1:length(N)
-    U_qDrift = speye(2^(2*L));
-    U_1 = expm(-1i*H1_shift*(t/N(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/N(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/N(k))*sum/C);
-    for j = 1:N(k)
+for k = 1:length(num_list)
+    U_qDrift = speye(2^N);
+    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
+    for j = 1:num_list(k)
         choice = rand();
         if choice < probabilities(1)
             selected_option = 1;

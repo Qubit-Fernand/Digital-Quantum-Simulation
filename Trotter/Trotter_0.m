@@ -1,6 +1,6 @@
 % Time Evolution Operator
 function U0 = Trotter_0(dt)
-global L;
+global N;
 global H;
 global H_shift;
 
