@@ -8,7 +8,7 @@ Random_Trotter_Error_200 = cell(1,length(dt_list));
 Random_Trotter_Error_500 = cell(1,length(dt_list));
 
 for i = 1:length(dt_list)
-    U = Random_Trotter_2(dt_list(i));
+    U = Permutation_2(dt_list(i));
     Random_Trotter_Error_50{i} = U^r_list(1) - expm(-1i * H_shift * dt_list(i) * 50);
     Random_Trotter_Error_100{i} = U^r_list(2) - expm(-1i * H_shift * dt_list(i) * 100);
     Random_Trotter_Error_200{i} = U^r_list(3) - expm(-1i * H_shift * dt_list(i) * 200);

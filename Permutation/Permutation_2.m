@@ -1,5 +1,5 @@
 % randomly permuted 2-nd order Trotter-Suzuki
-function U_random = Random_Trotter_2(dt)
+function U_random = Permutation_2(dt)
 global N;
 global H1;
 global H2;
