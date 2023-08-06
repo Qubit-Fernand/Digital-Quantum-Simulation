@@ -11,7 +11,7 @@ global H3_shift;
 % Define the size of the system (a N = L * L square lattice with two L-length chains)
 L = 3; % The length of the square lattice
 N = L^2; % System size
-alpha = 2; % Power of the distance
+alpha = 0; % Power of the distance
 
 J = 1; % Exchange interaction energy
 

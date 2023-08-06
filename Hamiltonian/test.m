@@ -1,7 +1,7 @@
 %% Set the energy threshold for the low-energy subspace
 global N;
 
-delta = 4;
+delta = 15;
 
 % Projector onto low-energy subspace
 projector = zeros(2^N);
@@ -15,7 +15,7 @@ end
 %% Act on a Random Generated State
 % Set seed to ensure the same initial state is outputted each time
 rng(0); % Set seed value to 0
-v = randn(2^(2*L), 1) + 1i * randn(2^(2*L), 1);
+v = randn(2^N, 1) + 1i * randn(2^N, 1);
 rng('default'); % Restore default seed value
 
 % Initialize quantum register

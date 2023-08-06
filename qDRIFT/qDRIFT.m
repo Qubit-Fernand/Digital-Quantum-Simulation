@@ -15,7 +15,7 @@ B = eigs(H2_shift, 1);
 C = eigs(H3_shift, 1);
 
 t_list = [1.0, 3.0, 5.0, 10.0];
-num_list = [1000,10000,100000,200000,500000];
+num_list = [1000,10000,100000,200000,500000,1000000];
 
 sum = A + B + C;
 probabilities = [A/sum, B/sum, C/sum];

@@ -14,7 +14,7 @@ end
 
 %% Calculate the norm of the error
 t_list = [1.0, 3.0, 5.0, 10.0];
-num_list = [1000,10000,100000,200000,500000,1000000];
+num_list = [1000,10000,100000,200000,500000];
 
 t_1 = zeros(1, length(num_list));
 t_1_Delta = zeros(1, length(num_list));
