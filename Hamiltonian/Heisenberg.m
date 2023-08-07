@@ -12,7 +12,7 @@ global H3_shift;
 % Here we suppose the external magnetic field is zero
 
 % Define the size of the system (a N = 2 * L lattice with two L-length chains)
-L = 5; % Chain length: L
+L = 6; % Chain length: L
 N = 2 * L; % System size
 
 J = 1; % Exchange interaction energy

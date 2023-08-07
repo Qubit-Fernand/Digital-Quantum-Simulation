@@ -7,7 +7,7 @@ global H1_shift;
 global H2_shift;
 global H3_shift;
 
-addpath('../Trotter');
+% addpath('../Trotter');
 r_list = [50 100 200 500];
 dt_list = [0.005 0.008 0.010 0.012 0.015 0.017 0.020];
 
@@ -25,7 +25,7 @@ for i = 1:length(dt_list)
         [H1_shift, H2_shift, H3_shift] = Random(H1_shift, H2_shift, H3_shift);
         U_random = U_random * Trotter_2(dt);
     end
-    Random_Trotter_Error_50{i} = norm(U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r));
+    Random_Trotter_Error_50{i} = U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r);
 end
 
 %% r = 100
@@ -37,7 +37,7 @@ for i = 1:length(dt_list)
         [H1_shift, H2_shift, H3_shift] = Random(H1_shift, H2_shift, H3_shift);
         U_random = U_random * Trotter_2(dt);
     end
-    Random_Trotter_Error_100{i} = norm(U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r));
+    Random_Trotter_Error_100{i} = U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r);
 end
 
 %% r = 200
@@ -49,7 +49,7 @@ for i = 1:length(dt_list)
         [H1_shift, H2_shift, H3_shift] = Random(H1_shift, H2_shift, H3_shift);
         U_random = U_random * Trotter_2(dt);
     end
-    Random_Trotter_Error_200{i} = norm(U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r));
+    Random_Trotter_Error_200{i} = U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r);
 end
 
 %% r = 500
@@ -61,5 +61,5 @@ for i = 1:length(dt_list)
         [H1_shift, H2_shift, H3_shift] = Random(H1_shift, H2_shift, H3_shift);
         U_random = U_random * Trotter_2(dt);
     end
-    Random_Trotter_Error_500{i} = norm(U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r));
+    Random_Trotter_Error_500{i} = U_random - expm(-1i*(H1_shift+H2_shift+H3_shift)*dt*r);
 end
