@@ -7,7 +7,7 @@ delta = 4;
 projector = zeros(2^N);
 for j = 1:2^N
     state = states(:,j);
-    if energy(j) < delta
+    if energy(j) <= delta
         projector = projector + state * state.';
     end
 end

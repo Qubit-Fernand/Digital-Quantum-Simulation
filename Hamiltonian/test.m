@@ -1,13 +1,13 @@
 %% Set the energy threshold for the low-energy subspace
 global N;
 
-delta = 15;
+delta = 4;
 
 % Projector onto low-energy subspace
 projector = zeros(2^N);
 for j = 1:2^N
     state = states(:,j);
-    if energy(j) < delta
+    if energy(j) <= delta
         projector = projector + state * state.';
     end
 end
