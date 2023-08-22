@@ -12,7 +12,7 @@ global H3_shift;
 % Assuming there is no external magnetic field
 L = 6; % Single chain length: L
 N = 2 * L; % System size
-J = 1; % Exchange interaction energy
+J = 1; % Exchange interaction strength
 
 % Construct the Hamiltonian matrix
 H1 = sparse(2^N,2^N);
@@ -56,7 +56,7 @@ end
 
 % Shift the Hamiltonian by the ground state energy
 % Lanczos method for sparse matrix. By default, the output is sorted in
-% Descending order of norm, and the return value is a complex number.
+% descending order of norm, and the return value is a complex number.
 energy1 = sort(eigs(H1, 2^N));
 energy2 = sort(eigs(H2, 2^N));
 energy3 = sort(eigs(H3, 2^N));
@@ -65,6 +65,7 @@ ground_energy2 = min(energy2);
 ground_energy3 = min(energy3);
 
 % Floor function removed
+% Please firstly confirm ground energy > 0
 H1_shift = H1 - ground_energy1 * speye(2^N);
 H2_shift = H2 - ground_energy2 * speye(2^N);
 H3_shift = H3 - ground_energy3 * speye(2^N);

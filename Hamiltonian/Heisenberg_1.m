@@ -10,9 +10,9 @@ global H3_shift;
 
 % Define the size of the system: a single L-length chain
 % Assuming there is no external magnetic field
-L = 8; % Chain length: L
+L = 9; % Chain length: L
 N = L; % System size
-J = 1; % Exchange interaction energy
+J = 1; % Exchange interaction strength
 
 H1 = sparse(2^N,2^N);
 H2 = sparse(2^N,2^N);
@@ -42,6 +42,7 @@ ground_energy2 = min(energy2);
 ground_energy3 = min(energy3);
 
 % Floor function removed
+% Please firstly confirm ground energy > 0
 H1_shift = H1 - ground_energy1 * speye(2^N);
 H2_shift = H2 - ground_energy2 * speye(2^N);
 H3_shift = H3 - ground_energy3 * speye(2^N);

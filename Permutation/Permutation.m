@@ -1,13 +1,15 @@
 %% Random Permutation 2nd-order Trotter-Suzuki
 global N;
+global H;
 global H1;
 global H2;
 global H3;
+global H_shift;
 global H1_shift;
 global H2_shift;
 global H3_shift;
 
-% addpath('../Trotter');
+addpath('Trotter');
 r_list = [50 100 200 500];
 dt_list = [0.010 0.020];
 
