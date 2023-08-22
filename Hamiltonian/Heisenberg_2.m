@@ -8,21 +8,18 @@ global H1_shift;
 global H2_shift;
 global H3_shift;
 
-% Define the parameters of the Heisenberg model
-% Here we suppose the external magnetic field is zero
-
-% Define the size of the system (a N = 2 * L lattice with two L-length chains)
-L = 6; % Chain length: L
+% Define the size of the system: N = 2 * L lattice with two L-length chains
+% Assuming there is no external magnetic field
+L = 6; % Single chain length: L
 N = 2 * L; % System size
-
 J = 1; % Exchange interaction energy
 
-% Construct the Hamiltonian matrix, H1: intra-chain interaction & H2: inter-chain interaction
+% Construct the Hamiltonian matrix
 H1 = sparse(2^N,2^N);
 H2 = sparse(2^N,2^N);
 H3 = sparse(2^N,2^N);
 
-% Pauli Matrix
+% Pauli matrix
 X = sparse([0, 1; 1, 0]);
 Y = sparse([0, -1i; 1i, 0]);
 Z = sparse([1, 0; 0, -1]);
@@ -58,8 +55,8 @@ for i = 1:L
 end
 
 % Shift the Hamiltonian by the ground state energy
-% Lanczos Method for sparse matrix. By default, the output is sorted in
-% descending order of norm, and the return value is a complex number.
+% Lanczos method for sparse matrix. By default, the output is sorted in
+% Descending order of norm, and the return value is a complex number.
 energy1 = sort(eigs(H1, 2^N));
 energy2 = sort(eigs(H2, 2^N));
 energy3 = sort(eigs(H3, 2^N));

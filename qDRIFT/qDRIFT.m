@@ -28,6 +28,7 @@ for k = 1:length(num_list)
     U_qDrift = speye(2^N);
     U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
     U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
+    %% 
     U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
     for j = 1:num_list(k)
         choice = rand();

@@ -16,7 +16,7 @@ Random_Trotter_Error_2_002 = cell(1,length(r_list));
 Random_Trotter_Error_4_001 = cell(1,length(r_list));
 Random_Trotter_Error_4_002 = cell(1,length(r_list));
 
-%% dt = 0.01;
+%% dt = 0.01 p = 2;
 dt = 0.01;
 for i = 1:length(r_list)
     r = r_list(i);
@@ -28,6 +28,7 @@ for i = 1:length(r_list)
     Random_Trotter_Error_2_001{i} = U_random - expm(-1i * H_shift * dt * r);
 end
 
+%% dt = 0.01 p = 4;
 for i = 1:length(r_list)
     r = r_list(i);
     for j = 1:r
@@ -38,7 +39,7 @@ for i = 1:length(r_list)
     Random_Trotter_Error_4_001{i} = U_random - expm(-1i * H_shift * dt * r);
 end
 
-%% dt = 0.02;
+%% dt = 0.02 p = 2;
 dt = 0.02;
 for i = 1:length(r_list)
     r = r_list(i);
@@ -50,6 +51,7 @@ for i = 1:length(r_list)
     Random_Trotter_Error_2_002{i} = U_random - expm(-1i * H_shift * dt * r);
 end
 
+%% dt = 0.04 p = 4
 for i = 1:length(r_list)
     r = r_list(i);
     for j = 1:r
