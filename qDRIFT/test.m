@@ -1,7 +1,7 @@
 %% Set the energy threshold for the low-energy subspace
 global N;
 
-delta = 12;
+delta = 16;
 
 % Projector onto low-energy subspace
 projector = zeros(2^N);
@@ -14,7 +14,7 @@ end
 
 %% Calculate the norm of the error
 t_list = [1.0, 3.0, 5.0, 10.0];
-num_list = [1000,10000,100000,200000,500000];
+num_list = [10000,50000,100000,200000,500000,1000000];
 
 t_1 = zeros(1, length(num_list));
 t_1_Delta = zeros(1, length(num_list));

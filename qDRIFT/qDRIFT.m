@@ -15,7 +15,7 @@ B = eigs(H2_shift, 1);
 C = eigs(H3_shift, 1);
 
 t_list = [1.0, 3.0, 5.0, 10.0];
-num_list = [1000,10000,100000,200000,500000,1000000];
+num_list = [10000,50000,100000,200000,500000,1000000];
 
 sum = A + B + C;
 probabilities = [A/sum, B/sum, C/sum];
@@ -28,7 +28,6 @@ for k = 1:length(num_list)
     U_qDrift = speye(2^N);
     U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
     U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
-    %% 
     U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
     for j = 1:num_list(k)
         choice = rand();
