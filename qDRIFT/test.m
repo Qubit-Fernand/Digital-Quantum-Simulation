@@ -1,7 +1,7 @@
 %% Set the energy threshold for the low-energy subspace
 global N;
 
-delta = 16;
+delta = 8;
 
 % Projector onto low-energy subspace
 projector = zeros(2^N);

@@ -10,7 +10,7 @@ global H3_shift;
 
 % Define the size of the system: a single L-length chain
 % Assuming there is no external magnetic field
-L = 7; % Chain length: L
+L = 4; % Chain length: L
 N = L; % System size
 J = 1; % Exchange interaction strength
 
