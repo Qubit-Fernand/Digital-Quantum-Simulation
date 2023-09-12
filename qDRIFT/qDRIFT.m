@@ -15,107 +15,88 @@ B = eigs(H2_shift, 1);
 C = eigs(H3_shift, 1);
 
 t_list = [1.0, 3.0, 5.0, 10.0];
-num_list = [10000,50000,100000,200000,500000,1000000];
+r_list = [10000,50000,100000,200000,500000,1000000];
+c_list = cell(1,length(r_list));
 
 sum = A + B + C;
 probabilities = [A/sum, B/sum, C/sum];
 
-%% qDRIFT: t = 1
-t = 1.0;
-qDRIFT_Error_1 = cell(1,length(num_list));
-
-for k = 1:length(num_list)
-    U_qDrift = speye(2^N);
-    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
-    for j = 1:num_list(k)
+for i = 1:length(r_list)
+    c_list{i} = zeros(1, r_list(i));
+    for j = 1:r_list(i)
         choice = rand();
         if choice < probabilities(1)
-            selected_option = 1;
-            U_qDrift = U_qDrift * U_1;
+            c_list{i}(j) = 1;
         elseif choice < probabilities(1) + probabilities(2)
-            selected_option = 2;
-            U_qDrift = U_qDrift * U_2;
+            c_list{i}(j) = 2;
         else
-            selected_option = 3;
-            U_qDrift = U_qDrift * U_3;
+            c_list{i}(j) = 3;
         end
     end
-    qDRIFT_Error_1{k}  = U_qDrift - expm(-1i*H_shift*t);
+end
+
+% Please load('qDRIFT.mat') to fix the choice sequence for every system
+load('qDRIFT.mat');
+%% qDRIFT: t = 1
+t = 1.0;
+qDRIFT_Error_1 = cell(1,length(r_list));
+
+for i = 1:length(r_list)
+    U_qDrift = speye(2^N);
+    U_1 = expm(-1i*H1_shift*(t/r_list(i))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/r_list(i))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/r_list(i))*sum/C);
+    U_list = {U_1, U_2, U_3};
+    for j = 1:r_list(i)
+        U_qDrift = U_qDrift * U_list{c_list{i}(j)};
+    end
+    qDRIFT_Error_1{i}  = U_qDrift - expm(-1i*H_shift*t);
 end
 
 %% qDRIFT: t = 3
 t = 3.0;
-qDRIFT_Error_3 = cell(1,length(num_list));
+qDRIFT_Error_3 = cell(1,length(r_list));
 
-for k = 1:length(num_list)
+for i = 1:length(r_list)
     U_qDrift = speye(2^N);
-    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
-    for j = 1:num_list(k)
-        choice = rand();
-        if choice < probabilities(1)
-            selected_option = 1;
-            U_qDrift = U_qDrift * U_1;
-        elseif choice < probabilities(1) + probabilities(2)
-            selected_option = 2;
-            U_qDrift = U_qDrift * U_2;
-        else
-            selected_option = 3;
-            U_qDrift = U_qDrift * U_3;
-        end
+    U_1 = expm(-1i*H1_shift*(t/r_list(i))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/r_list(i))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/r_list(i))*sum/C);
+    U_list = {U_1, U_2, U_3};
+    for j = 1:r_list(i)
+        U_qDrift = U_qDrift * U_list{c_list{i}(j)};
     end
-    qDRIFT_Error_3{k}  = U_qDrift - expm(-1i*H_shift*t);
+    qDRIFT_Error_3{i}  = U_qDrift - expm(-1i*H_shift*t);
 end
 
 %% qDRIFT: t = 5
 t = 5.0;
-qDRIFT_Error_5 = cell(1,length(num_list));
+qDRIFT_Error_5 = cell(1,length(r_list));
 
-for k = 1:length(num_list)
+for i = 1:length(r_list)
     U_qDrift = speye(2^N);
-    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
-    for j = 1:num_list(k)
-        choice = rand();
-        if choice < probabilities(1)
-            selected_option = 1;
-            U_qDrift = U_qDrift * U_1;
-        elseif choice < probabilities(1) + probabilities(2)
-            selected_option = 2;
-            U_qDrift = U_qDrift * U_2;
-        else
-            selected_option = 3;
-            U_qDrift = U_qDrift * U_3;
-        end
+    U_1 = expm(-1i*H1_shift*(t/r_list(i))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/r_list(i))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/r_list(i))*sum/C);
+    U_list = {U_1, U_2, U_3};
+    for j = 1:r_list(i)
+        U_qDrift = U_qDrift * U_list{c_list{i}(j)};
     end
-    qDRIFT_Error_5{k}  = U_qDrift - expm(-1i*H_shift*t);
+    qDRIFT_Error_5{i}  = U_qDrift - expm(-1i*H_shift*t);
 end
 
 %% qDRIFT: t = 10
 t = 10.0;
-qDRIFT_Error_10 = cell(1,length(num_list));
+qDRIFT_Error_10 = cell(1,length(r_list));
 
-for k = 1:length(num_list)
+for i = 1:length(r_list)
     U_qDrift = speye(2^N);
-    U_1 = expm(-1i*H1_shift*(t/num_list(k))*sum/A);
-    U_2 = expm(-1i*H2_shift*(t/num_list(k))*sum/B);
-    U_3 = expm(-1i*H3_shift*(t/num_list(k))*sum/C);
-    for j = 1:num_list(k)
-        choice = rand();
-        if choice < probabilities(1)
-            selected_option = 1;
-            U_qDrift = U_qDrift * U_1;
-        elseif choice < probabilities(1) + probabilities(2)
-            selected_option = 2;
-            U_qDrift = U_qDrift * U_2;
-        else
-            selected_option = 3;
-            U_qDrift = U_qDrift * U_3;
-        end
+    U_1 = expm(-1i*H1_shift*(t/r_list(i))*sum/A);
+    U_2 = expm(-1i*H2_shift*(t/r_list(i))*sum/B);
+    U_3 = expm(-1i*H3_shift*(t/r_list(i))*sum/C);
+    U_list = {U_1, U_2, U_3};
+    for j = 1:r_list(i)
+        U_qDrift = U_qDrift * U_list{c_list{i}(j)};
     end
-    qDRIFT_Error_10{k}  = U_qDrift - expm(-1i*H_shift*t);
+    qDRIFT_Error_10{i}  = U_qDrift - expm(-1i*H_shift*t);
 end
