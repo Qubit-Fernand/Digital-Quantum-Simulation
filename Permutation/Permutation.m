@@ -10,7 +10,7 @@ global H2_shift;
 global H3_shift;
 
 t_list = [1.0 2.0];
-r_list = [10000,50000,100000,200000,500000,1000000];
+r_list = [10,50,100,200,500,1000];
 c_list = cell(1,length(r_list));
 
 for k = 1:length(r_list)
@@ -71,7 +71,7 @@ for i = 1:length(r_list)
     for j = 1:r_list(i)
         U_permutation = U_permutation * U_list{c_list{i}(j)};
     end
-    Random_Trotter_Error_p_4_1{i} = U_random - expm(-1i * H_shift * t);
+    Random_Trotter_Error_p_4_1{i} = U_permutation - expm(-1i * H_shift * t);
 end
 
 %% t = 2.0 p = 2;
@@ -85,6 +85,9 @@ for i = 1:length(r_list)
     U_5 = expm(-1i*H3_shift*(t/r_list(i))/2) * expm(-1i*H2_shift*(t/r_list(i))/2) * expm(-1i*H1_shift*(t/r_list(i))) * expm(-1i*H2_shift*(t/r_list(i))/2) * expm(-1i*H3_shift*(t/r_list(i))/2);
     U_6 = expm(-1i*H3_shift*(t/r_list(i))/2) * expm(-1i*H1_shift*(t/r_list(i))/2) * expm(-1i*H2_shift*(t/r_list(i))) * expm(-1i*H1_shift*(t/r_list(i))/2) * expm(-1i*H3_shift*(t/r_list(i))/2);
     U_list = {U_1, U_2, U_3, U_4, U_5, U_6};
+    for j = 1:r_list(i)
+        U_permutation = U_permutation * U_list{c_list{i}(j)};
+    end
     Random_Trotter_Error_p_2_2{i} = U_permutation - expm(-1i * H_shift * t);
 end
 
