@@ -42,7 +42,7 @@ ground_energy2 = min(energy2);
 ground_energy3 = min(energy3);
 
 % Floor function removed
-% Please firstly confirm ground energy > 0
+% Please firstly confirm ground energy >= 0
 H1_shift = H1 - ground_energy1 * speye(2^N);
 H2_shift = H2 - ground_energy2 * speye(2^N);
 H3_shift = H3 - ground_energy3 * speye(2^N);
