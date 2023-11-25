@@ -18,16 +18,16 @@ r_list = [10,50,100,200,500,1000];
 % denote symmetry protection with postfix
 Raw = zeros(1,length(r_list));
 SP = zeros(1,length(r_list));
-% Random = zeros(1,length(r_list));
+Random = zeros(1,length(r_list));
 Raw_Delta = zeros(1,length(r_list));
 SP_Delta = zeros(1,length(r_list));
-% Random_Delta = zeros(1,length(r_list));
+Random_Delta = zeros(1,length(r_list));
 
 for i = 1:length(r_list)
     Raw(i) = norm(Raw_Error{i});
     SP(i) = norm(SP_Error{i});
-    % Random = norm(Random_Error{i});
+    Random(i) = norm(Random_Error{i});
     Raw_Delta(i) = norm(projector * Raw_Error{i});
     SP_Delta(i) = norm(projector * SP_Error{i});
-    % Random_Delta = norm(projector * Random_Error{i});
+    Random_Delta(i) = norm(projector * Random_Error{i});
 end
