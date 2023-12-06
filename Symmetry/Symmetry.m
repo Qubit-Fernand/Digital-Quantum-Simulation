@@ -16,9 +16,10 @@ for i = 2:N
         Hadamard = kron(Hadamard, hadamard(2)/sqrt(2));
 end
 
+Repeat = 10;
 Raw_Error = cell(1,length(r_list));
 SP_Error = cell(1,length(r_list));
-Random_Error = cell(1,length(r_list));
+Random_Error = cell(Repeat,length(r_list));
 
 %% Raw;
 for i = 1:length(r_list)
@@ -35,28 +36,30 @@ end
 
 %% Random Symmetry Protection
 
-for i = 1:length(r_list)
-    U_symmetry = speye(2^N);
-    U = Trotter_1(t/r_list(i));
-    for r = 1:r_list(i)
-        realPart1 = randn();
-        imagPart1 = randn();
-        realPart2 = randn();
-        imagPart2 = randn();
-        
-        alpha = complex(realPart1, imagPart1);
-        beta = complex(realPart2, imagPart2);
-        
-        % Scaling s.t. |alpha|^2 + |beta|^2 = 1
-        normFactor = sqrt(abs(alpha)^2 + abs(beta)^2);
-        alpha = alpha / normFactor;
-        beta = beta / normFactor;
-        
-        C = [alpha, -conj(beta); beta, conj(alpha)];
-        for j = 2:N
-            C = kron(C, [alpha, -conj(beta); beta, conj(alpha)]);
+for k = 1:Repeat
+    for i = 1:length(r_list)
+        U_symmetry = speye(2^N);
+        U = Trotter_1(t/r_list(i));
+        for r = 1:r_list(i)
+            realPart1 = randn();
+            imagPart1 = randn();
+            realPart2 = randn();
+            imagPart2 = randn();
+            
+            alpha = complex(realPart1, imagPart1);
+            beta = complex(realPart2, imagPart2);
+            
+            % Scaling s.t. |alpha|^2 + |beta|^2 = 1
+            normFactor = sqrt(abs(alpha)^2 + abs(beta)^2);
+            alpha = alpha / normFactor;
+            beta = beta / normFactor;
+            
+            C = [alpha, -conj(beta); beta, conj(alpha)];
+            for j = 2:N
+                C = kron(C, [alpha, -conj(beta); beta, conj(alpha)]);
+            end
+            U_symmetry = U_symmetry * (C'*U*C);
         end
-        U_symmetry = U_symmetry * (C'*U*C);
+        Random_Error{k, i} = U_symmetry - expm(-1i * H_shift * t);
     end
-    Random_Error{i} = U_symmetry - expm(-1i * H_shift * t);
 end

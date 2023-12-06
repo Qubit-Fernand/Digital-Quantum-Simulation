@@ -13,24 +13,27 @@ for j = 1:2^N
 end
 
 %% Calculate the norm of error norm
+Repeat = 10;
 r_list = [10,50,100,200,500,1000];
 
-p_2_1 = zeros(1,length(r_list));
-p_2_2 = zeros(1,length(r_list));
-p_4_1 = zeros(1,length(r_list));
-p_4_2 = zeros(1,length(r_list));
-p_2_1_Delta = zeros(1,length(r_list));
-p_2_2_Delta = zeros(1,length(r_list));
-p_4_1_Delta = zeros(1,length(r_list));
-p_4_2_Delta = zeros(1,length(r_list));
+p_2_1 = zeros(Repeat,length(r_list));
+p_2_2 = zeros(Repeat,length(r_list));
+p_4_1 = zeros(Repeat,length(r_list));
+p_4_2 = zeros(Repeat,length(r_list));
+p_2_1_Delta = zeros(Repeat,length(r_list));
+p_2_2_Delta = zeros(Repeat,length(r_list));
+p_4_1_Delta = zeros(Repeat,length(r_list));
+p_4_2_Delta = zeros(Repeat,length(r_list));
 
-for i = 1:length(r_list)
-    p_2_1(i) = norm(Random_Trotter_Error_p_2_1{i});
-    p_2_2(i) = norm(Random_Trotter_Error_p_2_2{i});
-    p_4_1(i) = norm(Random_Trotter_Error_p_4_1{i});
-    p_4_2(i) = norm(Random_Trotter_Error_p_4_2{i});
-    p_2_1_Delta(i) = norm(projector * Random_Trotter_Error_p_2_1{i});
-    p_2_2_Delta(i) = norm(projector * Random_Trotter_Error_p_2_2{i});
-    p_4_1_Delta(i) = norm(projector * Random_Trotter_Error_p_4_1{i});
-    p_4_2_Delta(i) = norm(projector * Random_Trotter_Error_p_4_2{i});
+for i = 1:Repeat
+    for j = 1:length(r_list)
+        p_2_1(i, j) = norm(Random_Trotter_Error_p_2_1{i, j});
+        p_2_2(i, j) = norm(Random_Trotter_Error_p_2_2{i, j});
+        p_4_1(i, j) = norm(Random_Trotter_Error_p_4_1{i, j});
+        p_4_2(i, j) = norm(Random_Trotter_Error_p_4_2{i, j});
+        p_2_1_Delta(i, j) = norm(projector * Random_Trotter_Error_p_2_1{i, j});
+        p_2_2_Delta(i, j) = norm(projector * Random_Trotter_Error_p_2_2{i, j});
+        p_4_1_Delta(i, j) = norm(projector * Random_Trotter_Error_p_4_1{i, j});
+        p_4_2_Delta(i, j) = norm(projector * Random_Trotter_Error_p_4_2{i, j});
+    end
 end

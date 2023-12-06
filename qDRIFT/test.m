@@ -13,25 +13,28 @@ for j = 1:2^N
 end
 
 %% Calculate the norm of the error
+Repeat = 10;
 t_list = [1.0, 3.0, 5.0, 10.0];
 r_list = [10000,50000,100000,200000,500000,1000000];
 
-t_1 = zeros(1, length(r_list));
-t_1_Delta = zeros(1, length(r_list));
-t_3 = zeros(1, length(r_list));
-t_3_Delta = zeros(1, length(r_list));
-t_5 = zeros(1, length(r_list));
-t_5_Delta = zeros(1, length(r_list));
-t_10 = zeros(1, length(r_list));
-t_10_Delta = zeros(1, length(r_list));
+t_1 = zeros(Repeat, length(r_list));
+t_1_Delta = zeros(Repeat, length(r_list));
+t_3 = zeros(Repeat, length(r_list));
+t_3_Delta = zeros(Repeat, length(r_list));
+t_5 = zeros(Repeat, length(r_list));
+t_5_Delta = zeros(Repeat, length(r_list));
+t_10 = zeros(Repeat, length(r_list));
+t_10_Delta = zeros(Repeat, length(r_list));
 
-for i = 1:length(r_list)
-    t_1(i) = norm(qDRIFT_Error_1{i});
-    t_1_Delta(i) = norm(projector * qDRIFT_Error_1{i});
-    t_3(i) = norm(qDRIFT_Error_3{i});
-    t_3_Delta(i) = norm(projector * qDRIFT_Error_3{i});
-    t_5(i) = norm(qDRIFT_Error_5{i});
-    t_5_Delta(i) = norm(projector * qDRIFT_Error_5{i});
-    t_10(i) = norm(qDRIFT_Error_10{i});
-    t_10_Delta(i) = norm(projector * qDRIFT_Error_10{i});
+for i = 1:Repeat
+    for j = 1:length(r_list)
+        t_1(i, j) = norm(qDRIFT_Error_1{i, j});
+        t_1_Delta(i, j) = norm(projector * qDRIFT_Error_1{i, j});
+        t_3(i, j) = norm(qDRIFT_Error_3{i, j});
+        t_3_Delta(i, j) = norm(projector * qDRIFT_Error_3{i, j});
+        t_5(i, j) = norm(qDRIFT_Error_5{i, j});
+        t_5_Delta(i, j) = norm(projector * qDRIFT_Error_5{i, j});
+        t_10(i, j) = norm(qDRIFT_Error_10{i, j});
+        t_10_Delta(i, j) = norm(projector * qDRIFT_Error_10{i, j});
+    end
 end
