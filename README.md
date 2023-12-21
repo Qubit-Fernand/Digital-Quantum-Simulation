@@ -1,5 +1,5 @@
 # Digital-Quantum-Simulation
-Numerical Experiments for Quantum Simulation Algorithms: Trotter-Suzuki, qDRIFT, Random Permutaion and Symmetry Protection.
+MATLAB Numerical Experiments for Quantum Simulation Algorithms: Trotter-Suzuki, qDRIFT, Random Permutaion and Symmetry Protection.
 
 The "Hamiltonian" folder contains three types of models: single chain homogeneous & 2x6 Heisenberg as well as power-law models, in which each local term is shifted to semidefinite for subspace projection analysis (optional). 
 
